@@ -25,14 +25,7 @@ tailrec fun<T> iteration(
     return iteration(f, xNew, cond, nMax, n+1)
 }
 
-//Double用の判定式、Float.MIN_VALUEはFloatの最小少数、計算機的に十分小さい値として利用
-fun condDouble(x: Double, xNew: Double): Boolean = abs(x - xNew) < Float.MIN_VALUE.toDouble()
-
-//ニュートン法でf(x) = x^3 - 2.0のx=0における実数解を求めるための漸化式
-fun newton(x: Double): Double = x - ((x*x*x - 2.0) / (3.0*x*x))
-
 fun main(args: Array<String>) {
-    val ans = iteration(::newton, 10000000000000000000.0, ::condDouble)
-
+    var ans = iteration(::newton, 10000000000000000000.0, ::condDouble)
     println(ans * ans * ans)
 }
