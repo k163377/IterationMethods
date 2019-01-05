@@ -32,7 +32,6 @@ fun condDouble(x: Double, xNew: Double): Boolean = abs(x - xNew) < Float.MIN_VAL
 fun newton(x: Double): Double = x - ((x*x*x - 2.0) / (3.0*x*x))
 
 fun main(args: Array<String>) {
-    //val ans = iteration({newton(it)}, 1000000000000000.0, { x, xNew -> condDouble(x, xNew)})
     val ans = iteration(::newton, 10000000000000000000.0, ::condDouble)
 
     println(ans * ans * ans)
