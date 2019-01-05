@@ -2,6 +2,9 @@ import java.lang.RuntimeException
 import kotlin.math.abs
 import kotlin.math.pow
 
+//非収束時のException出力
+fun<T> notConverged(ans: T) { throw RuntimeException("収束しませんでした ans: $ans") }
+
 //反復法の本体
 tailrec fun<T> iteration(
     f: (T) -> T, //漸化式
@@ -18,7 +21,7 @@ tailrec fun<T> iteration(
         return xNew
     }
     //反復回数判定
-    if(n > nMax) throw RuntimeException("収束しませんでした")
+    if(n > nMax) notConverged(xNew)
     //末尾再帰
     return iteration(f, xNew, cond, nMax, n+1)
 }
@@ -38,7 +41,7 @@ tailrec fun binaryIteration(
         return c
     }
     //反復回数判定
-    if(n > nMax) throw RuntimeException("収束しませんでした。ans: $c")
+    if(n > nMax) notConverged(c)
     return when {
         f(a) * f(c) > 0 -> binaryIteration(f, c, b, cond, nMax, n+1)
         f(b)*f(c) > 0 -> binaryIteration(f, a, c, cond, nMax, n+1)
