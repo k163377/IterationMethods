@@ -1,5 +1,4 @@
 import java.lang.RuntimeException
-import kotlin.math.*
 
 //反復法の本体
 tailrec fun<T> iteration(
@@ -26,6 +25,6 @@ tailrec fun<T> iteration(
 }
 
 fun main(args: Array<String>) {
-    var ans = iteration(::newton, 10000000000000000000.0, ::condDouble)
+    var ans = iteration(::newtonF, 10000000000000000000.0, ::condDouble)
     println(ans * ans * ans) //解は2^(1/3)になる
 }

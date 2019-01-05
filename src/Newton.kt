@@ -4,4 +4,4 @@ import kotlin.math.abs
 fun condDouble(x: Double, xNew: Double): Boolean = abs(x - xNew) < Float.MIN_VALUE.toDouble()
 
 //ニュートン法でf(x) = x^3 - 2.0のx=0における実数解を求めるための漸化式
-fun newton(x: Double): Double = x - ((x*x*x - 2.0) / (3.0*x*x))
+fun newtonF(x: Double): Double = x - ((x*x*x - 2.0) / (3.0*x*x))
