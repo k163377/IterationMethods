@@ -27,5 +27,5 @@ tailrec fun<T> iteration(
 
 fun main(args: Array<String>) {
     var ans = iteration(::newton, 10000000000000000000.0, ::condDouble)
-    println(ans * ans * ans)
+    println(ans * ans * ans) //解は2^(1/3)になる
 }
