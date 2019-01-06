@@ -11,7 +11,7 @@ fun<T : Any> iterationSequence(
     nMax: Int = 10000 //反復回数上限
 ): List<T> = generateSequence( Pair<T?, T>(null, x0)) { (_, xNew) ->
     xNew to f(xNew)  //xの更新
-}.takeWhile { (x, xNew) ->
+}.takeFor { (x, xNew) ->
     if(x == null) true else !cond(x, xNew) //条件判定、xは初期値nullなのでnull回避が必要
 }.map {
     it.second //Pairから配列へ変換
