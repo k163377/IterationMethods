@@ -29,22 +29,23 @@ tailrec fun<T> iteration(
 //二分法の本体
 tailrec fun binaryIteration(
     f: (Double) -> Double, //入力関数
-    a: Double,
-    b: Double,
-    cond: (Double) -> Boolean, //判定関数
+    trueValue: Double, //2分法の真値
+    a: Double, //小さい方
+    b: Double, //大きい方
     nMax: Int = 10000, //反復回数上限
     n: Int = 1 //反復回数
 ): Double {
     val c = (a + b) / 2.0
-    if(cond(c)){
+    //Doubleの二分法ではFloat.MIN_VALUEの精度が出なかったので、Wikipediaの記載から10^(-15)を採用
+    if(abs(f(c) - trueValue) < 1.0E-15){
         println("反復回数: $n, ans: $c")
         return c
     }
     //反復回数判定
     if(n > nMax) notConverged(c)
     return when {
-        f(a) * f(c) > 0 -> binaryIteration(f, c, b, cond, nMax, n+1)
-        f(b)*f(c) > 0 -> binaryIteration(f, a, c, cond, nMax, n+1)
+        f(a) * f(c) > 0 -> binaryIteration(f, trueValue, c, b, nMax, n+1)
+        f(b)*f(c) > 0 -> binaryIteration(f, trueValue, a, c, nMax, n+1)
         else -> throw RuntimeException("条件判定に失敗しました")
     }
 }
@@ -52,8 +53,8 @@ tailrec fun binaryIteration(
 fun main(args: Array<String>) {
     val newtonAns = iteration(::newtonF, 10000000000000000000.0, ::condDouble)
     println(newtonAns * newtonAns * newtonAns) //解は2^(1/3)になる
-    //(恐らくsin/cosの精度が原因で)Float.MIN_VALUEの精度が出なかったので、Wikipediaの記載から10^(-15)を採用
+    //真偽
     val binaryAns =
-        binaryIteration(::binaryF, 0.0, 5.0, { abs(binaryF(it)) < 10.0.pow(-15) })
+        binaryIteration(::binaryF, 0.0, 0.0, 5.0)
     println(binaryAns)
 }
