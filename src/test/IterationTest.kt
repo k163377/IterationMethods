@@ -7,7 +7,7 @@ import main.newtonF
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class IterationTest internal constructor() {
+class IterationTest {
     @Test
     fun testNewton() {
         val ans = iteration(::newtonF, 1.0, ::condDouble)
