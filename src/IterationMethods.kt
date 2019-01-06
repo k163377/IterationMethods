@@ -1,6 +1,5 @@
 import java.lang.RuntimeException
 import kotlin.math.abs
-import kotlin.math.pow
 
 //非収束時のException出力
 fun<T> notConverged(ans: T) { throw RuntimeException("収束しませんでした ans: $ans") }
@@ -53,8 +52,7 @@ tailrec fun binaryIteration(
 fun main(args: Array<String>) {
     val newtonAns = iteration(::newtonF, 10000000000000000000.0, ::condDouble)
     println(newtonAns * newtonAns * newtonAns) //解は2^(1/3)になる
-    //真偽
-    val binaryAns =
-        binaryIteration(::binaryF, 0.0, 0.0, 5.0)
+
+    val binaryAns = binaryIteration(::binaryF, 0.0, 0.0, 5.0)
     println(binaryAns)
 }
