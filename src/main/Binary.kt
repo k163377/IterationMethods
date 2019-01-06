@@ -23,8 +23,8 @@ tailrec fun binaryIteration(
     //反復回数判定
     if(n > nMax) notConverged(c)
     return when {
-        f(a) * f(c) > 0 -> binaryIteration(f, trueValue, c, b, nMax, n + 1)
-        f(b) * f(c) > 0 -> binaryIteration(f, trueValue, a, c, nMax, n + 1)
+        f(a) * f(c) > 0.0 -> binaryIteration(f, trueValue, c, b, nMax, n + 1)
+        f(b) * f(c) > 0.0 -> binaryIteration(f, trueValue, a, c, nMax, n + 1)
         else -> throw RuntimeException("条件判定に失敗しました")
     }
 }
