@@ -33,7 +33,7 @@ fun binaryIterationSequence(
         else -> throw RuntimeException("条件判定に失敗しました")
     }
 }.map {
-    it.third //Tripleから配列へ変換
+    it.third //TripleのシークエンスからDoubleのシークエンスに変換
 }.takeFor {
     abs(f(it) - trueValue) >= 1.0E-15 //収束判定
 }.take(nMax).toList() //nMaxまで行ったら終了、Listにして返却
