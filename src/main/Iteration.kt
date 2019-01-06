@@ -1,3 +1,5 @@
+package main
+
 import kotlin.math.abs
 
 //反復法の本体
@@ -18,7 +20,7 @@ tailrec fun<T> iteration(
     //反復回数判定
     if(n > nMax) notConverged(xNew)
     //末尾再帰
-    return iteration(f, xNew, cond, nMax, n+1)
+    return iteration(f, xNew, cond, nMax, n + 1)
 }
 
 //判定式、Float.MIN_VALUEはFloatの最小少数、計算機的に十分小さい値として利用

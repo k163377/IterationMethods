@@ -1,3 +1,5 @@
+package main
+
 import java.lang.RuntimeException
 
 //非収束時のException出力
