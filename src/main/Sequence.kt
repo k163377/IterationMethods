@@ -12,7 +12,7 @@ fun<T : Any> iterationSequence(
 ): List<T> = generateSequence( Pair<T?, T>(null, x0)) { (_, xNew) ->
     xNew to f(xNew)  //xの更新
 }.takeFor { (x, xNew) ->
-    if(x == null) true else !cond(x, xNew) //条件判定、xは初期値nullなのでnull回避が必要
+    if(x == null) true else !cond(x, xNew) //収束判定、xは初期値nullなのでnull回避が必要
 }.map {
     it.second //Pairから配列へ変換
 }.take(nMax).toList() //nMaxまで行ったら終了、Listにして返却
@@ -35,5 +35,5 @@ fun binaryIterationSequence(
 }.map {
     it.third //Tripleから配列へ変換
 }.takeFor {
-    abs(f(it) - trueValue) >= 1.0E-15
+    abs(f(it) - trueValue) >= 1.0E-15 //収束判定
 }.take(nMax).toList() //nMaxまで行ったら終了、Listにして返却
